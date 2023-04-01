@@ -1,0 +1,18 @@
+;Insert any other found Remote Access Tools here, in the same format shown below.
+AnyDesk,
+TeamViewer,
+RealVNC,
+UltraVNC,
+GoToMyPC,
+RemoteUtilities,
+Getscreen.me,
+Getscreen,
+UltraViewer,
+Supremo,
+ConnectWise,
+360Viewer,
+Glance,
+GlanceGuest,
+AweSun,
+AweRay,
+LogMeIn
