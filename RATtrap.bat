@@ -4,25 +4,30 @@ cd /d "%~dp0" && ( if exist "%temp%\getadmin.vbs" del "%temp%\getadmin.vbs" ) &&
 set RAT=RATS.txt
 set RN=0
 echo "AntiRAT Results" > C:\log.txt
+echo "Please input the folder or drive you want to scan (leave blank for full system scan):"
+set /p CurrentDir=
+if "%CurrentDir%"=="" set CurrentDir=C:\
 echo "Running scan, this may take some time..."
 
 for /f "delims=," %%a in (%RAT%) DO (
     call :Scan %%~a
     set /a RN+=1
+    set /a Progress=RN*100/50
+    echo Progress: %Progress%%%... 
 )
 
 pause 
 goto :eof
 
 :FoundFiles
-echo "Found %~1" >> C:\log.txt
+echo %date% %time% - Found %~1 - Action: Deleted - Status: Success >> C:\log.txt
 echo "Found %~1"
 set RATEx=1
 exit /B     
 
 :CompleteCheck
 if RATEx==1 (
-    echo "RATtrap found Remote Access Tools and deleted them. Check C:\log.txt\ for more info."
+    echo "RATtrap found Remote Access Tools and deleted them. Check C:\log.txt for more info."
 ) else (
     echo "No Remote Access Tools were found. Exiting now"
     timeout 10
@@ -32,7 +37,6 @@ if RATEx==1 (
 exit 0
 
 :Scan
-set CurrentDir=C:\
 set "params=%*"
 echo "Scanning %~1"
 for /R "%CurrentDir%" %%a in ("%~1"*) DO (
