@@ -1,0 +1,23 @@
+; Sample signatures for RATs
+; Note: These are only a few examples and not an exhaustive list
+
+; Poison Ivy
+0x9A0001D3
+
+; DarkComet
+0x00020000
+
+; BlackShades
+0x41414141
+
+; njRAT
+0x6A4D6E71
+
+; Gh0st RAT
+0x6768C0
+
+; Xtreme RAT
+0x68000000
+
+; HAVIJ
+0x5C5C5C5C
