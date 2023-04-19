@@ -4,15 +4,15 @@ cd /d "%~dp0" && ( if exist "%temp%\getadmin.vbs" del "%temp%\getadmin.vbs" ) &&
 set RAT=RATS.txt
 set RN=0
 echo "AntiRAT Results" > C:\log.txt
-
 echo "Running scan, this may take some time..."
 
 for /f "delims=," %%a in (%RAT%) DO (
-    start scan.bat %%~a
-    set RN +=1
+    call :Scan %%~a
+    set /a RN+=1
 )
 
 pause 
+goto :eof
 
 :FoundFiles
 echo "Found %~1" >> C:\log.txt
@@ -30,3 +30,19 @@ if RATEx==1 (
 )
 
 exit 0
+
+:Scan
+set CurrentDir=C:\
+set "params=%*"
+echo "Scanning %~1"
+for /R "%CurrentDir%" %%a in ("%~1"*) DO (
+    echo "%%~nxa"
+    IF EXIST "%%~fa" (
+        call :FoundFiles "%%~fa"
+        taskkill /f /im %~1*
+        del /s /q %%~fa
+        rmdir /s /q %%~fa
+    )
+)
+call :CompleteCheck
+EXIT 0
