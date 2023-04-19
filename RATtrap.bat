@@ -1,18 +1,32 @@
 @echo off
 set "params=%*"
 cd /d "%~dp0" && ( if exist "%temp%\getadmin.vbs" del "%temp%\getadmin.vbs" ) && fsutil dirty query %systemdrive% 1>nul 2>nul || (  echo Set UAC = CreateObject^("Shell.Application"^) : UAC.ShellExecute "cmd.exe", "/k cd ""%~sdp0"" && %~s0 %params%", "", "runas", 1 >> "%temp%\getadmin.vbs" && "%temp%\getadmin.vbs" && exit /B )
+if not exist "RATS.txt" (
+    echo "RATS.txt not found. Exiting..."
+    exit 1
+)
+if not exist "Signatures.txt" (
+    echo "Signatures.txt not found. Exiting..."
+    exit 1
+)
 set RAT=RATS.txt
-set RN=0
+set /a RN=0
+set /a TotalRATs=0
+for /f %%a in ('type "RATS.txt" ^| find /v /c ""') do set /a TotalRATs=%%a
 echo "AntiRAT Results" > C:\log.txt
 echo "Please input the folder or drive you want to scan (leave blank for full system scan):"
 set /p CurrentDir=
 if "%CurrentDir%"=="" set CurrentDir=C:\
+if not exist "%CurrentDir%" (
+    echo "Invalid directory. Exiting..."
+    exit 1
+)
 echo "Running scan, this may take some time..."
 
 for /f "delims=," %%a in (%RAT%) DO (
     call :Scan %%~a
     set /a RN+=1
-    set /a Progress=RN*100/50
+    set /a Progress=RN*100/TotalRATs
     echo Progress: %Progress%%%... 
 )
 
