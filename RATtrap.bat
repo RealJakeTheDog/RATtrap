@@ -16,6 +16,7 @@ for /f "delims=," %%a in (%RAT%) DO (
     echo Progress: %Progress%%%... 
 )
 
+call :AdvancedScan
 pause 
 goto :eof
 
@@ -50,3 +51,18 @@ for /R "%CurrentDir%" %%a in ("%~1"*) DO (
 )
 call :CompleteCheck
 EXIT 0
+
+:AdvancedScan
+echo "Running advanced scan..."
+for /R "%CurrentDir%" %%a in ("*.exe" "*.dll" "*.bat" "*.vbs" "*.ps1") DO (
+    call :HeuristicCheck "%%~fa"
+)
+goto :eof
+
+:HeuristicCheck
+set "file=%~1"
+for /f "tokens=2 delims=: " %%a in ('findstr /m /l /g:"Signatures.txt" "%file%"') do (
+    echo "Possible RAT detected: %file% (Signature: %%a)"
+    echo %date% %time% - Found %file% - Action: Analyzed - Status: Possible RAT (Signature: %%a) >> C:\log.txt
+)
+exit /B
