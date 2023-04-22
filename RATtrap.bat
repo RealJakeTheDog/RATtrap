@@ -54,13 +54,14 @@ exit 0
 :Scan
 set "params=%*"
 echo "Scanning %~1"
-for /R "%CurrentDir%" %%a in ("%~1"*) DO (
+for /R "%CurrentDir%" %%a in ("%~1*") DO (
     echo "%%~nxa"
     IF EXIST "%%~fa" (
         call :FoundFiles "%%~fa"
-        taskkill /f /im %~1*
-        del /s /q %%~fa
-        rmdir /s /q %%~fa
+        taskkill /f /im "%%~na*"
+        if not "%%~da" == "" (
+            del /s /q "%%~fa"
+        )
     )
 )
 call :CompleteCheck
