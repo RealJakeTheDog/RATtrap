@@ -2,7 +2,7 @@
 ; Note: These are only a few examples and not an exhaustive list
 
 ; Poison Ivy
-0x9A0001D3
+0x009A0001D3
 
 ; DarkComet
 0x00020000
