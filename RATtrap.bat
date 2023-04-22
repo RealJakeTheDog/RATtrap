@@ -23,7 +23,7 @@ if not exist "%CurrentDir%" (
 )
 echo "Running scan, this may take some time..."
 
-for /f "delims=," %%a in (%RAT%) DO (
+for /f "delims=" %%a in (%RAT%) DO (
     call :Scan %%~a
     set /a RN+=1
     set /a Progress=RN*100/TotalRATs
