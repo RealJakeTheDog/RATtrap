@@ -24,10 +24,17 @@ if not exist "%CurrentDir%" (
 echo "Running scan, this may take some time..."
 
 for /f "delims=" %%a in (%RAT%) DO (
-    call :Scan %%~a
-    set /a RN+=1
-    set /a Progress=RN*100/TotalRATs
-    echo Progress: %Progress%%%... 
+    echo "scanning %%~a"
+    for /R "%CurrentDir%" %%a in ("%%~a*") DO (
+        echo "%%~nxa"
+        IF EXIST "%%~fa" (
+            call :FoundFiles "%%~fa"
+            taskkill /f /im "%%~na*"
+            if not "%%~da" == "" (
+                del /s /q "%%~fa"
+            )
+        )
+    )
 )
 
 call :AdvancedScan
@@ -49,21 +56,6 @@ if RATEx==1 (
     exit 0 
 )
 
-exit 0
-
-:Scan
-set "params=%*"
-echo "Scanning %~1"
-for /R "%CurrentDir%" %%a in ("%~1*") DO (
-    echo "%%~nxa"
-    IF EXIST "%%~fa" (
-        call :FoundFiles "%%~fa"
-        taskkill /f /im "%%~na*"
-        if not "%%~da" == "" (
-            del /s /q "%%~fa"
-        )
-    )
-)
 call :CompleteCheck
 EXIT 0
 
