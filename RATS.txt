@@ -1,18 +1,51 @@
 ;Insert any other found Remote Access Tools here, in the same format shown below.
-AnyDesk,
-TeamViewer,
-RealVNC,
-UltraVNC,
-GoToMyPC,
-RemoteUtilities,
-Getscreen.me,
-Getscreen,
-UltraViewer,
-Supremo,
-ConnectWise,
-360Viewer,
-Glance,
-GlanceGuest,
-AweSun,
-AweRay,
+AnyDesk
+TeamViewer
+RealVNC
+UltraVNC
+GoToMyPC
+RemoteUtilities
+Getscreen.me
+Getscreen
+UltraViewer
+Supremo
+ConnectWise
+360Viewer
+Glance
+GlanceGuest
+AweSun
+AweRay
 LogMeIn
+TightVNC
+Chrome Remote Desktop
+RemotePC
+NoMachine
+Zoho Assist
+Mikogo
+Splashtop
+DameWare
+Bomgar
+SolarWinds Take Control
+Goverlan Reach
+Devolutions Remote Desktop Manager
+Remote Desktop Connection (RDC)
+Remote Administrator (Radmin)
+PCAnywhere
+Remcos
+DarkComet
+BlackShades
+Poison Ivy
+njRAT
+Gh0st RAT
+Xtreme RAT
+HAVIJ
+QuasarRAT
+NetSupport Manager
+Netop Remote Control
+SecureCRT
+Remote Desktop Services (RDS)
+PuTTY
+FileZilla
+WinSCP
+Cyberduck
+ProRAT
