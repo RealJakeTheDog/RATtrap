@@ -1,10 +1,8 @@
-Consolidate both batch files (RATtrap.bat and scan.bat) into a single batch file for simplicity and ease of maintenance.
 Improve the logging mechanism by including timestamps and more detailed information.
 Create a backup of the deleted files before removing them, in case of false positives.
-Add an option to scan specific folders or drives, rather than the entire system.
 Add a progress indicator to give users an idea of how much time is left in the scanning process.
 Include a whitelist feature to exclude known safe files or folders from being scanned.
 Improve error handling and provide more informative error messages.
 Add a user interface to make it easier to use for non-technical users.
 Schedule automatic scans to regularly check for the presence of remote access tools.
-Regularly update the list of known remote access tools in RATS.txt to ensure the latest threats are detected.
+Regularly update the list of known remote access tools in RATS.txt to ensure the latest threats are detected. ALWAYS NEEDS TO BE UPDATED 
